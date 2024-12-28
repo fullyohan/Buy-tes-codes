@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinetPay Payment</title>
+    <script src="https://cdn.cinetpay.com/seamless/main.js"></script>
+    <style>
+        .sdk {
+            display: block;
+            position: absolute;
+            background-position: center;
+            text-align: center;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+    <script>
+        function checkout() {
+            CinetPay.setConfig({
+                apikey: '{{ cinetpay_apikey }}', // YOUR APIKEY
+                site_id: '{{ cinetpay_site_id }}', // YOUR SITE_ID
+                notify_url: '{{ url_for('cinetpay_notify', _external=True) }}',
+                mode: 'PRODUCTION'
+            });
+            CinetPay.getCheckout({
+                transaction_id: '{{ transaction_id }}', // YOUR TRANSACTION ID
+                amount: '{{ amount }}',
+                currency: 'XOF',
+                channels: 'ALL',
+                description: 'Test de paiement',
+            });
+            CinetPay.waitResponse(function(data) {
+                if (data.status == "REFUSED") {
+                    alert("Votre paiement a échoué");
+                    window.location.href = "{{ url_for('index') }}";
+                } else if (data.status == "ACCEPTED") {
+                    alert("Votre paiement a été effectué avec succès");
+                    window.location.href = "{{ url_for('index') }}";
+                }
+            });
+            CinetPay.onError(function(data) {
+                console.log(data);
+                alert("Une erreur est survenue lors du paiement. Veuillez réessayer.");
+                window.location.href = "{{ url_for('index') }}";
+            });
+        }
+    </script>
+</head>
+<body onload="checkout()">
+    <div class="sdk">
+        <h1>SDK SEAMLESS</h1>
+        <button onclick="checkout()">Checkout</button>
+    </div>
+</body>
+</html>

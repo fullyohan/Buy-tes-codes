@@ -1,0 +1,34 @@
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form input, form button {
+    margin: 10px 0;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+
+form input[type="text"], form input[type="number"], form input[type="file"] {
+    width: 80%;
+    max-width: 400px;
+    background-color: #666;
+    color: #ffffff;
+}
+
+form button {
+    width: 50%;
+    max-width: 200px;
+    background-color: #e91e63; /* Rose */
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #c2185b;
+}
+

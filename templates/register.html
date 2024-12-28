@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/templatemo-cyborg-gaming.css') }}">
+    
+    
+    
+</head>
+
+<style>
+    body{
+        text-align: center;
+        background: url('../css/images/1.jpg') 0px 0px no-repeat ;
+        background-size:cover;
+        background-attachment: fixed;
+        font-family: 'Poppins', sans-serif;
+    }
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .form-container {
+        width: 100%;
+        max-width: 600px;
+        height: 500px;
+        padding: 20px;
+        background-color: #353637;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+    .header {
+        text-align: center;
+        margin-bottom: 70px;
+        
+    }
+    .footer {
+        text-align: center;
+        margin-top: 20px;
+    }
+    .mail-form-agile input[type="text"], .mail-form-agile input[type="password"], .mail-form-agile input[type="email"] {
+        padding: 13px 10px;
+        width: 92.5%;
+        font-size: 16px;
+        outline: none;
+        background:transparent;
+        border:0px;
+        border-bottom: 1px solid #fff;
+        border-radius: 0px;
+        font-family: 'Poppins', sans-serif;
+        letter-spacing:1.6px;
+        color:#fff;
+    }
+::-webkit-input-placeholder{
+   color:#b4b0b0 !important;
+   font-weight:400;
+}
+
+.mail-form-agile input[type="submit"]{
+    font-size: 18px;
+    padding: 10px 20px;
+    letter-spacing:1.2px;
+    border: none;
+    text-transform: capitalize;
+    outline: none;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    background: #D65B88;
+    color: #fff;
+    cursor: pointer;
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif;
+    -webkit-transition-duration: 0.9s;
+    transition-duration: 0.9s;
+}
+.mail-form-agile input[type="submit"]:hover {
+    -webkit-transition-duration: 0.9s;
+    transition-duration: 0.9s;
+    background:rgba(91, 157, 214, 0.76);
+}
+.footer{
+text-align: center;
+padding-top:75px;
+letter-spacing:1.6px;
+line-height:22px;
+}
+.footer p {
+font-size: 16px;
+color: #fff;
+margin: 0px;
+letter-spacing:1.4px;
+}
+.footer p a {
+color:#D65B88;
+font-weight:blod;
+-webkit-transition-duration: 0.8s;
+transition-duration: 0.8s;
+}
+.footer p a:hover {
+color: #51cbe1;
+ -webkit-transition-duration: 0.8s;
+ transition-duration: 0.8s;
+}
+</style>
+<body>
+    <div class="padding-all">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <div class="alert-container" style="color: white;">
+                        {% for category, message in messages %}
+                            <div class="alert alert-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+        <div class="container">
+            <div class="form-container">
+                
+                <div class="header">
+                    <h1 style="color:#ec6090">Register</h1>
+                </div>
+                <div class="mail-form-agile">
+                    <form method="POST" action="{{ url_for('register') }}">
+                        {{ form.hidden_tag() }}
+                        <div class="padding">
+                            {{ form.username.label }}<br>
+                            {{ form.username(size=32) }}
+                        </div>
+                        <div class="padding">
+                            {{ form.email.label }}<br>
+                            {{ form.email(size=32) }}
+                        </div>
+                        <div class="padding">
+                            {{ form.password.label }}<br>
+                            {{ form.password(size=32) }}
+                        </div>
+                        <div class="padding">
+                            {{ form.submit(class="btn btn-primary") }}
+                        </div>
+                    </form>
+                    <p>Or register with <a href="{{ url_for('google.login') }}" style="color:#ec6090">Google</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    <div class="footer">
+        <p>© 2025 <a href="{{url_for('index')}}">Buy Tes Codes</a>. All rights reserved</p>
+    </div>
+    <!-- ...existing scripts... -->
+</body>
+</html>

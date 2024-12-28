@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ShoppingCart.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/templatemo-cyborg-gaming.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            
+
+            <!-- Main Content -->
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Dashboard</h1>
+                </div>
+                <div class="container admin-dashboard">
+                    {% if session['logged_in'] %}
+                    <h1>Admin Dashboard</h1>
+                    <a href="{{ url_for('admin_products') }}">Manage Products</a>
+                    <a href="{{ url_for('admin_orders') }}">Manage Orders</a>
+                    <a href="{{ url_for('admin_users') }}">Manage Users</a>
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                    {% else %}
+                    <p>You need to be logged in to access this page.</p>
+                    <a href="{{ url_for('login') }}">Login</a>
+                    {% endif %}
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto py-3 bg-dark text-white">
+        <div class="container text-center">
+            <span>&copy; 2023 Your Company. All rights reserved.</span>
+        </div>
+    </footer>
+</body>
+</html>

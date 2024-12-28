@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Products</title>
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ShoppingCart.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/templatemo-cyborg-gaming.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <!-- ...existing code... -->
+
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <!-- ...existing code... -->
+
+            <!-- Main Content -->
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                    <h1 class="h2">Manage Products</h1>
+                </div>
+                <div class="container admin-dashboard">
+                    <form method="POST" enctype="multipart/form-data" action="{{ url_for('admin_products') }}">
+                        {{ form.hidden_tag() }}
+                        <input type="hidden" name="product_id" id="product_id" value="">
+                        <div class="form-group">
+                            <label for="product_name">Product Name</label>
+                            <input type="text" id="product_name" name="product_name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="product_category">Product Category</label>
+                            <select id="product_category" name="product_category" class="form-control" required>
+                                <option value="recent_products">Recent Products</option>
+                                <option value="high_rated_products">High Rated Products</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="product_platform">Product Platform</label>
+                            <select id="product_platform" name="product_platform" class="form-control" required>
+                                <option value="xbox">Xbox</option>
+                                <option value="pc">PC</option>
+                                <option value="nintendo">Nintendo</option>
+                                <option value="playstation">Playstation</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="product_price">Product Price</label>
+                            <input type="number" step="0.01" id="product_price" name="product_price" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="product_rating">Product Rating</label>
+                            <input type="number" step="0.1" id="product_rating" name="product_rating" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="product_image">Product Image</label>
+                            <input type="file" id="product_image" name="product_image" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="product_codes">Product Codes (comma-separated)</label>
+                            <input type="text" id="product_codes" name="product_codes" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Product</button>
+                    </form>
+                    <table class="table mt-4" style="color: white;">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Platform</th>
+                                <th>Price</th>
+                                <th>Rating</th>
+                                <th>Image</th>
+                                <th>Codes</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for product in products %}
+                            <tr>
+                                <td>{{ product.id }}</td>
+                                <td>{{ product.name }}</td>
+                                <td>{{ product.category }}</td>
+                                <td>{{ product.platform }}</td>
+                                <td>{{ product.price }}</td>
+                                <td>{{ product.rating }}</td>
+                                <td><img src="{{ url_for('static', filename='images/' + product['image']) }}" style="width: 70px;" alt="{{ product['name'] }}"></td>
+                                <td>{{ product.codes | join(', ') }}</td>
+                                <td>
+                                    <form action="{{ url_for('delete_product', product_id=product.id) }}" method="post" style="display:inline;">
+                                        {{ form.hidden_tag() }} <!-- Add CSRF token -->
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer mt-auto py-3 bg-dark text-white">
+        <div class="container text-center">
+            <span>&copy; 2023 Your Company. All rights reserved.</span>
+        </div>
+    </footer>
+</body>
+</html>

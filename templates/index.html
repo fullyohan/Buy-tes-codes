@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Buy Tes Codes</title>
+    <link rel=icon href="{{url_for('static', filename='images/logo.png')}}" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/ShoppingCart.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/templatemo-cyborg-gaming.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+
+    <script src="https://cdn.cinetpay.com/seamless/main.js"></script>
+    <style>
+        .sdk {
+            display: block;
+            position: absolute;
+            background-position: center;
+            text-align: center;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    {% include 'template.html' %}
+  
+    <!-- Main Content -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="page-content">
+                    <!-- Banner -->
+                    <div class="main-banner">
+                        <div class="row">
+                            <div class="col-lg-7">
+                                <div class="header-text">
+                                    {% if session.logged_in %}
+                                    <h6>Bienvenue ! {{ session.username }}</h6>
+                                    {% else %}
+                                    <h6>Bienvenue !</h6>
+                                    {% endif %}
+                                    <h4><em>Acheter</em> tous les jeux du moment</h4>
+                                    <div class="main-button">
+                                        <a href="{{url_for('products_view')}}">Acheter maintenant</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CinetPay Button -->
+            
+
+                    <div class="most-popular">
+                        <div class="heading-section">
+                            <h4>Les licenses populaires</h4>
+                        </div>
+                        <div class="row" >
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="item" style="width: 200px; margin: auto; padding: 10px; margin-bottom :20px">
+                                    <button style='background: none; border: none;' class="fn"><img src="{{url_for('static' , filename = '/images/logo/fn.png')}}"></button>
+                                </div>
+                            </div>
+                          
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="item" style="width: 200px; margin: auto; padding: 10px; ; margin-bottom :20px">
+                                    <button style='background: none; border: none;' class="gtao"><img src="{{url_for('static' , filename = '/images/logo/gtao.png')}}"></button>
+                                </div>
+                            </div>
+                          
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="item" style="width: 200px; margin: auto; padding: 10px; ; margin-bottom :20px">
+                                    <button style='background: none; border: none;' class="ff"><img src="{{url_for('static' , filename = '/images/logo/ff.png')}}"></button>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="item" style="width: 200px;  margin: auto; padding: 10px; ; margin-bottom :20px">
+                                    <button style='background: none; border: none;' class="mc"><img src="{{url_for('static' , filename = '/images/logo/minecraft.png')}}"></button>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="item" style="width: 200px; margin: auto; padding: 10px; ; margin-bottom :20px">
+                                    <button style='background: none; border: none;' class="rbl"><img src="{{url_for('static' , filename = '/images/logo/rbl.png')}}"></button>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="item" style="width: 200px; margin: auto; padding: 10px; ; margin-bottom :20px">
+                                    <button style='background: none; border: none;' class="fc"><img src="{{url_for('static' , filename = '/images/logo/fc.png')}}"></button>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="item" style="width: 200px; margin: auto; padding: 10px; ; margin-bottom :20px">
+                                    <button style='background: none; border: none;' class="valo"><img src="{{url_for('static' , filename = '/images/logo/valo.png')}}"></button>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="item" style="width: 200px; margin: auto; padding: 10px; ; margin-bottom :20px">
+                                    <button style='background: none; border: none;' class="wz"><img src="{{url_for('static' , filename = '/images/logo/wz.png')}}"></button>
+                                </div>
+                            </div>
+                          
+                        </div>
+                    </div>
+                    <div class="most-popular">
+                        <div class="heading-section">
+                            <h4>Platformes</h4>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-3 col-sm-6" >
+                                <div class="item" style="width: 200px; margin: auto; padding: 10px; margin-bottom :20px">
+                                    <button style='background: none; border: none;' class="platform" data-platform="nintendo"><img src="{{url_for('static' , filename = '/images/logo/nintendo.png')}}"></button>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="item" style="width: 200px;  margin: auto; padding: 10px;  margin-bottom :20px">
+                                    <button style='background: none; border: none;' class="platform" data-platform="playstation"><img src="{{url_for('static' , filename = '/images/logo/play.png')}}"></button>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="item" style="width: 200px;  margin: auto; padding: 10px ; margin-bottom :20px">
+                                    <button style='background: none; border: none;' class="platform" data-platform="xbox"><img src="{{url_for('static' , filename = '/images/logo/xbox.png')}}"></button>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="item" style="width: 200px; margin: auto; padding: 10px ; margin-bottom :20px">
+                                    <button style='background: none; border: none;' class="platform" data-platform="pc"><img src="{{url_for('static' , filename = '/images/logo/pc.png')}}"></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Products -->
+                    <div class="most-popular">
+                        <div class="heading-section">
+                            <h4>Les items les plus récents</h4>
+                        </div>
+                        <div class="row">
+                            {% for product in recent_products %}
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="item">
+                                    <img src="{{ url_for('static', filename='images/' + product['image']) }}" alt="{{ product['name'] }}">
+                                    <h4> {{ product['price'] }} FCFA</h4>
+                                    <ul>
+                                        
+                                        <li>
+                                            <form action="{{ url_for('add_to_cart', product_id=product['id']) }}" method="POST" class="add-to-cart-form">
+                                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                                <button type="submit" style="background: none; border: none;" ><i class="fa fa-plus-circle fa-2x"></i></button>
+                                            </form>
+                                        </li>
+                                      
+                                    </ul>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+
+
+
+
+                    <!-- Top Rated Products -->
+                    <div class="most-popular">
+                        <div class="heading-section">
+                            <h4>Les items les mieux notés</h4>
+                        </div>
+                        <div class="row">
+                            {% for product in high_rated_products %}
+                            <div class="col-lg-3 col-sm-6">
+                                <div class="item">
+                                    <img src="{{ url_for('static', filename='images/' + product['image']) }}" alt="{{ product['name'] }}">
+                                    <h4 >{{ product['price'] }} FCFA</h4>
+                                    <ul>
+                                        
+                                        <li>
+                                            <form action="{{ url_for('add_to_cart', product_id=product['id']) }}" method="POST" class="add-to-cart-form">
+                                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                                <button type="submit" style="background: none; border: none;" ><i class="fa fa-plus-circle fa-2x"></i></button>
+                                            </form>
+                                        </li>
+                                      
+                                    </ul>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    
+                    <footer>
+                        <div class="container">
+                          <div class="row">
+                            <div class="col-lg-12">
+                              <p>Copyright © 2025 <a href="#">Buy Tes Codes</a> Company. All rights reserved. 
+                            </div>
+                          </div>
+                        </div>
+                      </footer>
+                      
+  <!-- Scripts -->
+<script src="{{url_for('static' , filename = 'vendor/jquery/jquery.min.js')}}"></script>
+  <script src="{{url_for('static' , filename = 'vendor/bootstrap/js/bootstrap.min.js')}}"></script>
+  <script src="{{url_for('static' , filename = 'js/isotope.min.js')}}"></script>
+  <script src="{{url_for('static' , filename = 'js/owl-carousel.js')}}"></script>
+  <script src="{{url_for('static' , filename = 'js/tabs.js')}}"></script>
+  <script src="{{url_for('static' , filename = 'js/popup.js')}}"></script>
+  <script src="{{url_for('static' , filename = 'js/custom.js')}}"></script>
+  <script src="{{url_for('static', filename = 'js/cart.js')}}"></script>
+<script>
+    function checkout() {
+        CinetPay.setConfig({
+            apikey: '16490420165f879ee4f1253.15350040',//   YOUR APIKEY
+            site_id: '5882516',//YOUR_SITE_ID
+            notify_url: "{{ url_for('cinetpay_notify', _external=True) }}",
+            mode: 'PRODUCTION'
+        });
+        CinetPay.getCheckout({
+            transaction_id: '{{ transaction_id }}',
+            amount: '{{ session.total_price }}',
+            currency: 'XOF',
+            channels: 'ALL',
+            description: 'Test de paiement',   
+        
+        });
+        
+        CinetPay.waitResponse(function(data) {
+            if (data.status == "REFUSED") {
+                alert("Votre paiement a échoué");
+                window.location.href = "{{ url_for('index') }}";
+            } else if (data.status == "ACCEPTED") {
+                alert("Votre paiement a été effectué avec succès");
+                window.location.href = "{{ url_for('index') }}";
+            }
+        });
+        CinetPay.onError(function(data) {
+            console.log(data);
+            alert("Une erreur est survenue lors du paiement. Veuillez réessayer.");
+            window.location.href = "{{ url_for('index') }}";
+        });
+    }
+
+    document.querySelector(".fn").addEventListener("click", function(){
+        document.getElementById("searchText").value = "Fortnite";
+        document.getElementById("search").submit();
+    });
+    document.querySelector(".gtao").addEventListener("click", function(){
+        document.getElementById("searchText").value = "GTA Online"; 
+        document.getElementById("search").submit();
+    });
+    document.querySelector(".wz").addEventListener("click", function(){
+        document.getElementById("searchText").value = "Call of Duty Warzone";
+        document.getElementById("search").submit();
+    });
+    document.querySelector(".rbl").addEventListener("click", function(){
+        document.getElementById("searchText").value = "Roblox";
+        document.getElementById("search").submit();
+    });
+    document.querySelector(".valo").addEventListener("click", function(){
+        document.getElementById("searchText").value = "Valorant";
+        document.getElementById("search").submit();
+    });
+    document.querySelector(".mc").addEventListener("click", function(){
+        document.getElementById("searchText").value = "Minecraft";
+        document.getElementById("search").submit();
+    });
+    document.querySelector(".fc").addEventListener("click", function(){
+        document.getElementById("searchText").value = "FC";
+        document.getElementById("search").submit();
+    });
+    document.querySelector(".ff").addEventListener("click", function(){
+        document.getElementById("searchText").value = "Free Fire";
+        document.getElementById("search").submit();
+    });
+    document.querySelectorAll(".platform").forEach(button => {
+        button.addEventListener("click", function() {
+            const platform = this.getAttribute("data-platform");
+            window.location.href = "{{ url_for('filter_platform') }}?platform=" + platform;
+        });
+    });
+   
+    // Update cart when quantity is changed
+    document.querySelectorAll('.cart-quantity').forEach(input => {
+        input.addEventListener('change', function() {
+            const productId = this.getAttribute('data-product-id');
+            const quantity = this.value;
+            fetch(`{{ url_for('update_cart_quantity') }}?product_id=${productId}&quantity=${quantity}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token() }}'
+                },
+                body: JSON.stringify({ product_id: productId, quantity: quantity })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Update cart UI or show success message
+                } else {
+                    // Show error message
+                }
+            });
+        });
+    });
+</script>  
+</body>
+
+</html>

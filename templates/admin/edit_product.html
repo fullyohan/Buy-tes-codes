@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Product</title>
+    <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Product</h1>
+        <form action="{{ url_for('admin_edit_product', product_id=product.id) }}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="name">Product Name</label>
+                <input type="text" class="form-control" id="name" name="name" value="{{ product.name }}" required>
+            </div>
+            <div class="form-group">
+                <label for="price">Price</label>
+                <input type="number" class="form-control" id="price" name="price" value="{{ product.price }}" required>
+            </div>
+            <div class="form-group">
+                <label for="platform">Platform</label>
+                <select class="form-control" id="platform" name="platform" required>
+                    <option value="pc" {% if product.platform == 'pc' %}selected{% endif %}>PC</option>
+                    <option value="xbox" {% if product.platform == 'xbox' %}selected{% endif %}>Xbox</option>
+                    <option value="playstation" {% if product.platform == 'playstation' %}selected{% endif %}>PlayStation</option>
+                    <option value="nintendo" {% if product.platform == 'nintendo' %}selected{% endif %}>Nintendo</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="image">Image</label>
+                <input type="file" class="form-control" id="image" name="image">
+            </div>
+            <button type="submit" class="btn btn-primary">Update Product</button>
+        </form>
+    </div>
+</body>
+</html>

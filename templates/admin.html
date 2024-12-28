@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/templatemo-cyborg-gaming.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="" href="">
+    <title>Buy Tes Codes</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{url_for('static' , filename = 'vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="{{url_for('static' , filename = 'css/fontawesome.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename = 'css/templatemo-cyborg-gaming.css')}}">
+    <link rel="stylesheet" href="{{url_for('static' , filename ='css/owl.css')}}">
+    <link rel="stylesheet" href="{{url_for('static' , filename = 'css/animate.css')}}">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Dashboard</h1>
+        <h2>Ajouter un produit</h2>
+        <form action="{{ url_for('add_product') }}" method="POST" enctype="multipart/form-data">
+            <input type="text" name="product_name" placeholder="Nom du produit" required>
+            <input type="text" name="product_category" placeholder="Catégorie" required>
+            <select name="product_platform" required>
+                <option value="pc">PC</option>
+                <option value="xbox">Xbox</option>
+                <option value="playstation">PlayStation</option>
+                <option value="nintendo">Nintendo</option>
+            </select>
+            <input type="number" name="product_price" placeholder="Prix" required>
+            <input type="number" step="0.1" name="product_rating" placeholder="Note (0-5)" required>
+            <input type="number" name="product_popularity" placeholder="Popularité (1-100)" required>
+            <input type="file" name="product_image" accept="image/*" required>
+            <button type="submit">Ajouter</button>
+        </form>
+        <h2>Liste des produits</h2>
+        <div class="row">
+            {% for product in products %}
+            <div class="col-lg-3 col-sm-6">
+                <div class="item">
+                    <img src="{{ url_for('static', filename='images/' + product['image']) }}" alt="{{ product['name'] }}">
+                    <h4>{{ product['name'] }}<br><span>{{ product['category'] }}</span></h4>
+                   
+                    <ul> 
+                        <h5>
+                        <li>{{ product['price'] }} EUR</li>
+                        <li>Note : {{ product['rating'] }}</li>
+                        <li>Popularité : {{ product['popularity'] }}</li></h5>
+                        <form action="{{ url_for('delete_product', product_name=product['name']) }}" method="POST" style="display:inline;">
+                            <button type="submit">Supprimer</button>
+                        </form>
+                    </ul>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="container">
+        <h2>Add New Product</h2>
+        <form action="{{ url_for('add_product') }}" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="name">Product Name:</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" class="form-control" id="price" name="price" required>
+            </div>
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <input type="text" class="form-control" id="category" name="category" required>
+            </div>
+            <div class="form-group">
+                <label for="platform">Platform:</label>
+                <input type="text" class="form-control" id="platform" name="platform" required>
+            </div>
+            <div class="form-group">
+                <label for="image">Image:</label>
+                <input type="file" class="form-control" id="image" name="image" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Product</button>
+        </form>
+    </div>
+</body>
+</html>
